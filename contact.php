@@ -9,7 +9,7 @@ if(isset($_POST['submitcontact']))
 	$email=$_POST['email'];
 	$message=$_POST['message'];
 
-	$to = "youremail@gmail.com";
+	$to = "coszely@gmail.com";
 	$subject = "Html5xcss3 - Testing Contact Form";
 	$message = " Name: " . $name ."\r\n Email: " . $email . "\r\n Message:\r\n" . $message;
 	 
@@ -76,7 +76,7 @@ if(isset($_POST['submitcontact']))
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                    <li>
-                        <a class="page-scroll" href="index.html">Home</a>
+                        <a class="page-scroll" href="/">Home</a>
                     </li>
 					<li>
                         <a class="page-scroll" href="archive.html">Blog</a>
@@ -115,11 +115,12 @@ if(isset($_POST['submitcontact']))
 		</div>
 		<div class="social-links">
 			<ul class="list-inline">
+				<li><a href="#"><i class="fa fa-wechat"></i></a></li>
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-				<li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-				<li><a href="#"><i class="fa fa-rss"></i></a></li>
+				<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+				
 			</ul>
 		</div>
 	</header>
@@ -138,9 +139,9 @@ if(isset($_POST['submitcontact']))
 							<div class="row">
 								<div class="col-md-4 box-item">
 									<h3>Contact Info</h3>
-									<span>SED UT PERSPICIATIS UNDE OMNIS ISTE NATUS ERROR SIT VOLUPTATEM ACCUSANTIUM DOLOREMQUE LAUDANTIUM, TOTAM REM APERIAM.</span><br> <br>
-									<p>JL.Kemacetan timur no.23. block.Q3<br>
-										Jakarta-Indonesia</p>
+									<span></span><br> <br>
+									<p>99 ShangDa Rd.<br>
+										Shanghai-China</p>
 									   <p>+86 136 7181 4189 <br>
 										</p>
 									<p>info@goszely.com</p>
@@ -196,9 +197,8 @@ if(isset($_POST['submitcontact']))
 			<div class="container">
 				<div class="row"> 
 					<div class="col-footer col-md-3">
-						<h2 class="footer-title">About Us</h2>
-						<div class="textwidget">Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan. <br> <br> 
-						Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan.</div>
+						<h2 class="footer-title">About Me</h2>
+						<div class="textwidget">Just a Rookie</div>
 					</div> 
 					<div class="col-footer col-md-3 widget_recent_entries">
 						<h2 class="footer-title">Recent Posts</h2>
@@ -260,9 +260,9 @@ if(isset($_POST['submitcontact']))
 							</li>
 							<li><a href="#"><i class="fa fa-facebook"></i></a>
 							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
+							<li><a href="#"><i class="fa fa-instagram"></i></a>
 							</li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a>
+							<li><a href="#"><i class="fa fa-wechat"></i></a>
 							</li>
 						</ul>
 					</div>
