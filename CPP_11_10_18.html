@@ -114,31 +114,39 @@
 							<h2>将int型指针地址转为double型指针地址</h2>
 							<blockquote>
 							<div class="note">
-							  <ol>
-											<p>#include<iostream></p>
-											<p>int main()</p>
-											<p>{</p>
-												<p>int* p=new int;</p>
-												<p>*p = 1；</p>
-												<p>double* d;</p>
-												<p>d = (double*)p;</p>
-												<p>std::cout << *d << std::endl;</p>
-											<p>}</p>
-											</blockquote>
-							<p>将int型指针<a>p</a>地址的类型转为double型后，赋值给另一个指向double的指针<a>d</a>，两指针地址相同，但地址内存的值不同；因为<a>d（double）</a>多出4个字节存储空间，其中值未知</p>
+							  <ul>
+											<li>#include&ltiostream&gt</li>
+											<li>int main()</li>
+											<li>{</li>
+												<li>int* p=new int;</li>
+												<li>*p = 1；</li>
+												<li>double* d;</li>
+												<li>d = (double*)p;</li>
+												<li>std::cout << *d << std::endl;</li>
+											<li>}</li>
+							  </ul>
+							</div>
+							</blockquote>
+							<p>将<em>int</em>型指针<em>p</em>地址的类型转为<em>double</em>型后，赋值给另一个指向<em>double</em>的指针<em>d</em>，两指针地址相同，但地址内存的值不同；因为<em>d(double)</em>多出4个字节存储空间，其中值未知</p>
 							<h2>char型数组指针修改内存值效果</h2>
-							<blockquote><p>#include<iostream></p>
-											<p>int main()</p>
-											<p>{</p>
-												<p>char* p=new char[4];</p>
-												<p>p[0]=10;</p>
-												<p>p[1]=2;</p>
-												<p>p[2]=0;</p>
-												<p>p[3]=0;</p>
-												<p>int* d;</p>
-												<p>d=(int*)p;</p>
-												<p>std::cout << *d << std::endl;</p>
-											<p>}</p></blockquote>
+							<blockquote>
+							<div class="note">
+							  <ul>
+											<li>#include&ltiostream&gt</li>
+											<li>int main()</li>
+											<li>{</li>
+												<li>char* p=new char[4];</li>
+												<li>p[0]=10;</li>
+												<li>p[1]=2;</li>
+												<li>p[2]=0;</li>
+												<li>p[3]=0;</li>
+												<li>int* d;</li>
+												<li>d=(int*)p;</li>
+												<li>std::cout << *d << std::endl;</li>
+											<li>}</li>
+							  </ul>
+							</div>				
+							</blockquote>
 							<p>C++内存本质为char型，数组p将存储单元中的位数进行修改，p[0]=10，即低8位为0000 1010，p[1]=2，即第二个8位为0000 0010。</p>
 							<p>类型转换后0000 0010 0000 1010转为十进制数522。</p>
 	<!--						
@@ -158,11 +166,11 @@
 							sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 !-->
 							<div class="note">
-							  <ol>
-								Lorem ipsum
+							  <ul>
+								<li>浅拷贝类似于按址传递，深拷贝按值传递</li>
 								<li>Sit amet vultatup nonumy</li>
 								<li>Duista sed diam</li>
-							  </ol>
+							  </ul>
 							  <div class="clear"></div>
 							</div>
 							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at 
