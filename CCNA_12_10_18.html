@@ -116,9 +116,9 @@
 							<h2>简单配置</h2>
 							<p>路由器R1配置</p>
 							<blockquote>
-							<code>Router>en<br>
+							<code><br>Router>en<br>
 Router#conf t<br>
-Enter configuration commands, one per line.  End with CNTL/Z.
+Enter configuration commands, one per line.  End with CNTL/Z.<br>
 Router(config)#host R1<br>
 R1(config)#int fa 0/0<br>
 R1(config-if)#ip add 192.168.1.1 255.255.255.0<br>
@@ -182,15 +182,109 @@ R3(config-if)#<br>
 R3(config-if)#ip address 3.3.3.3 255.255.255.0<br>
 R3(config-if)#<br>
 </code></blockquote>
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
-							at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril.</p>
-							<h2>Heading 1</h2>
-							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
-							 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse lorem ipsum dolor sit amet.</p>
-							<h2>Heading 2</h2>
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. 
-							 At vero eos et accusam et justo.</p>
-							<h2>Heading 3</h2>
+							<p>Loopback为环回接口，环回接口是用于模拟路由条目的虚拟接口。稳定，除掉电或关闭，一直有效</p>
+							<h2>测试连通性</h2>
+							<p>（1）测试网关</p>	
+							<blockquote>
+							<code>C:\>ping 192.168.1.1</code><br><samp><br>
+
+Pinging 192.168.1.1 with 32 bytes of data:<br><br>
+
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=255<br>
+Reply from 192.168.1.1: bytes=32 time=1ms TTL=255<br>
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=255<br>
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=255<br><br>
+
+Ping statistics for 192.168.1.1:<br>
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),<br>
+Approximate round trip times in milli-seconds:<br>
+    Minimum = 0ms, Maximum = 1ms, Average = 0ms</samp></blockquote>
+							<p>若ping网关失败，则需要从低层向高层排查故障：
+							<ul>
+								<li>检查物理线路是否正常</li>
+								<li>ping本地回环地址127.0.0.1,看TCP/IP栈是否正常</li>
+								<li>ping本机IP地址检查网卡驱动</li>
+								<li>检查子网掩码是否正常</li>
+								<li>检查防火墙</li>
+							</ul>	
+							</p>
+							<p>（2）测试不同子网的IP地址</p>	
+							<blockquote>
+							<code>
+							C:\>ping 12.1.1.1</code><br><samp><br>
+
+Pinging 12.1.1.1 with 32 bytes of data:<br><br>
+
+Request timed out.<br>
+Request timed out.<br>
+Request timed out.<br>
+Request timed out.<br>
+<br>
+Ping statistics for 12.1.1.1:<br>
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),<br>
+							</samp>
+							</blockquote>
+							<p>ping路由器R1的S0/0/1接口地址12.1.1.1显示超时，在路由器R1上进行调试，输出如下</p>
+							<blockquote>
+							<code>R1>en<br>
+R1#debug ip icmp</code><br><samp>
+ICMP packet debugging is on<br>
+R1#<br>
+ICMP: echo reply sent, src 192.168.1.1, dst 192.168.1.2<br><br>
+
+ICMP: echo reply sent, src 192.168.1.1, dst 192.168.1.2<br><br>
+
+ICMP: echo reply sent, src 192.168.1.1, dst 192.168.1.2<br><br>
+
+ICMP: echo reply sent, src 192.168.1.1, dst 192.168.1.2<br>						
+							</samp>
+							</blockquote>
+							<p>在PC上继续ping路由器R1的接口地址，ping Fa0/0端口时R1同步显示，但ping S0/0/1接口时无反应</p>
+							<p>猜想原因路由器R1未收到包</p>
+							<p>实际原因未在PC上配置网关192.168.1.1</p>
+							<p></p>
+							<p>继续ping别的IP地址，R2的S0/0/0接口12.1.1.2不通，在R2上debug:</p>
+							<blockquote><code>R2#debug ip icmp</code><br><samp>
+ICMP packet debugging is on<br>
+R2#<br>
+ICMP: echo reply sent, src 12.1.1.2, dst 192.168.1.2<br><br>
+
+ICMP: echo reply sent, src 12.1.1.2, dst 192.168.1.2<br><br>
+
+ICMP: echo reply sent, src 12.1.1.2, dst 192.168.1.2<br><br>
+
+ICMP: echo reply sent, src 12.1.1.2, dst 192.168.1.2<br></samp></blockquote>
+							<p>PC端显示超时而Router端显示已回应，则说明R2已收到echo request包，并发送了echo reply包</p>
+							<p>查看R2的路由表：</p>
+							<blockquote>
+							<code>R2#show ip route</code><br><samp>
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP<br>
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP<br>
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area<br>
+       * - candidate default, U - per-user static route, o - ODR<br>
+       P - periodic downloaded static route<br><br>
+
+Gateway of last resort is not set<br><br>
+
+     12.0.0.0/24 is subnetted, 1 subnets<br>
+C       12.1.1.0 is directly connected, Serial0/0/0<br>
+     23.0.0.0/24 is subnetted, 1 subnets<br>
+C       23.1.1.0 is directly connected, Serial0/0/1<br></samp>
+							</blockquote>
+							<p>可见路由表没有更新，表中没有指明去往192.168.1.2的路由，添加后ping通</p>
+							<blockquote>
+							<code>R2(config)#ip route 192.168.1.0 255.255.255.0 12.1.1.1</code></blockquote>
+							<p></p>
+							<p>添加其他路由</p>
+							<blockquote>
+							<code>R1(config)#ip route 0.0.0.0 0.0.0.0 12.1.1.2</code></blockquote>
+							<blockquote>
+							<code>R2(config)#ip route 3.3.3.3 255.255.255.0 23.1.1.3</code></blockquote>
+							<blockquote>
+							<code>R3(config)#ip route 0.0.0.0 0.0.0.0 23.1.1.2</code></blockquote>
+							<h2></h2>
 							<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
 							 At vero eos et accusam et justo duo dolores et ea rebum hendrerit in vulputate velit esse molestie.</p>
 							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
