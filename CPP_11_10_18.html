@@ -116,8 +116,8 @@
 							<div class="note">
 							  <ul>
 											<li>#include&ltiostream&gt</li>
-											<li>int main()</li>
-											<li>{</li>
+											<li>	int main()</li>
+											<li>    {</li>
 												<li>int* p=new int;</li>
 												<li>*p = 1；</li>
 												<li>double* d;</li>
@@ -165,13 +165,40 @@
 							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
 							sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 !-->
+							<h2>浅拷贝类似于按址传递，深拷贝按值传递</h2>
+							<p>对象给对象赋值时候调动赋值语句，会开辟空间，注意开辟空间是要<em>释放原有空间</em></p>
 							<div class="note">
-							  <ul>
-								<li>浅拷贝类似于按址传递，深拷贝按值传递</li>
-								<li>Sit amet vultatup nonumy</li>
-								<li>Duista sed diam</li>
-							  </ul>
+							  <ol>
+								
+								<li>自己给自己是否赋值</li>
+								<li>释放原有空间</li>
+								<li>申请新的空间赋值，拷贝</li>
+								<li>返回自身对象</li>
+								
+							  </ol>
 							  <div class="clear"></div>
+							  <blockquote>
+
+								<p>vec&ltTYPE&gt  & operator =(const vec&ltTYPE&gt &v)  //赋值运算符函数</p>
+										<p>{</p>
+											<p>if(this!=&v)</p>
+											<p>{</p>
+												<p>int i;</p>
+												<p>delete [] p ;</p>
+												<p>if(v.num==0)</p>
+												<p>{</p>
+													<p>num = 0;</p>
+													<p>p = NULL;</p>
+													<p>return *this;</p>
+												<p>}</p>
+												<p>num = v.num;</p>
+												<p>p=new TYPE[num];</p>
+												<p>for(i=0;i<num;i++)</p>
+													<p>p[i]=v.p[i];</p>
+											<p>}</p>
+											<p>return *this;</p>
+										<p>}</p>
+							  </blockquote>
 							</div>
 							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at 
 							 vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
