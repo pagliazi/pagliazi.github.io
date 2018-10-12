@@ -166,7 +166,23 @@
 							sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 !-->
 							<h2>浅拷贝类似于按址传递，深拷贝按值传递</h2>
-							<p>对象给对象赋值时候调动赋值语句，会开辟空间，注意开辟空间是要<em>释放原有空间</em></p>
+							<h3>浅拷贝</h3>
+							<p>对象初始化对象的时候调动拷贝构造函数，只是拷贝指针指向的拷贝构造称为浅拷贝。</p>
+							<h3>深拷贝</h3>
+							<p> 对象初始化对象的时候调动拷贝构造函数，真实开辟空间拷贝数据的拷贝构造称为深拷贝。</p>
+							<h3>浅赋值</h3>
+							<p> 对象给对象赋值时候调动赋值语句，不会开辟空间，只是简单的指针赋值</p>
+							<blockquote>
+								<code>
+									int main()<br>
+									{<br>
+										example;<br>
+									}<br>
+								</code>
+
+							</blockquote>
+							<h3>深赋值</h3>
+							<p>对象给对象赋值时候调动赋值语句，会开辟空间，注意开辟空间时要<strong>释放原有空间</srong></p>
 							<div class="note">
 							  <ol>
 								
@@ -178,26 +194,27 @@
 							  </ol>
 							  <div class="clear"></div>
 							  <blockquote>
-
-								<p>vec&ltTYPE&gt  & operator =(const vec&ltTYPE&gt &v)  //赋值运算符函数</p>
-										<p>{</p>
-											<p>if(this!=&v)</p>
-											<p>{</p>
-												<p>int i;</p>
-												<p>delete [] p ;</p>
-												<p>if(v.num==0)</p>
-												<p>{</p>
-													<p>num = 0;</p>
-													<p>p = NULL;</p>
-													<p>return *this;</p>
-												<p>}</p>
-												<p>num = v.num;</p>
-												<p>p=new TYPE[num];</p>
-												<p>for(i=0;i<num;i++)</p>
-													<p>p[i]=v.p[i];</p>
-											<p>}</p>
-											<p>return *this;</p>
-										<p>}</p>
+								<code>
+								vec&ltTYPE&gt  & operator =(const vec&ltTYPE&gt &v)  <i>//赋值运算符函数</i><br>
+										{<br>
+											if(this!=&v)<br>
+											{<br>
+												int i;<br>
+												delete [] p ;<br>
+												if(v.num==0)<br>
+												{<br>
+													num = 0;<br>
+													p = NULL;<br>
+													return *this;<br>
+												}<br>
+												num = v.num;<br>
+												p=new TYPE[num];<br>
+												for(i=0;i<num;i++)<br>
+													p[i]=v.p[i];<br>
+											}<br>
+											return *this;<br>
+										}<br>
+								</code>
 							  </blockquote>
 							</div>
 							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at 
