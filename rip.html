@@ -136,8 +136,14 @@ Incoming update filter list for all interfaces is not set<br></samp></blockquote
 							<li><strong>路由失效（</strong><em>Invalid</em><strong>）定时器：</strong>	路由器认定一个路由无效前的等待时间</li>
 							<li><strong>抑制（</strong><em>Hold down</em><strong>）定时器：</strong>	设置路由信息被抑制的时间</li>
 							<li><strong>路由刷新（</strong><em>Flushed</em><strong>）定时器：</strong>	将路由设为无效，并从路由表中删除的时间间隔</li></ul>
+							<img src="images/CCNA/routing_loop.jpg" >
+							<p>如图，RIP每30s发一次路由更新，若 Router A 上 Network 1 失效，A发往B的更新包中不再包含 Network 1，失效抑制刷新定时器同时开始启动，连续6个周期 路由器B 都没收到 路由器A 发来的 Network 1 信息，B认为 Network 1已失效。<br>
+							失效前，若 路由器B 收到发往 Network 1的数据包，则 路由器B 往 路由器A 转发。<br>
+							在B上失效前的180s内，路由器B上的 Network 1处于抑制状态。<br>
+							之后60s（<em>路由刷新240s-路由抑制或失效180s</em>）内，路由器B 的路由表中仍有 Network 1的条目，但认为 Network 1 <em>possible down</em>不再转发去往 Network 1的数据包<br>
+							60s后路由器B从路由表中删除 Network 1的信息</p>
 							<h2>RIP配置</h2>
-							<img src="images/rip.jpg" >
+							<img src="images/CCNA/rip.jpg" >
 							<p>如图配置完接口后输入：</p>
 							<blockquote><code>
 							R1(config)#router rip</code><br>
