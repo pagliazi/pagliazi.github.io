@@ -127,8 +127,18 @@
 							<li>R2更新自己的路由表</li>
 							<li>R2发送更新后的路由表给相邻路由器R3</li>
 							</ol>
+							<h2>RIP定时器</h2><blockquote><samp>
+							Sending updates every 30 seconds, next due in 28 seconds<br>
+Invalid after 180 seconds, hold down 180, flushed after 240<br>
+Outgoing update filter list for all interfaces is not set<br>
+Incoming update filter list for all interfaces is not set<br></samp></blockquote>
+							<ul><li><strong>路由更新（</strong><em>Update</em><strong>）定时器：</strong>	设置定期路由更新的时间间隔</li>
+							<li><strong>路由失效（</strong><em>Invalid</em><strong>）定时器：</strong>	路由器认定一个路由无效前的等待时间</li>
+							<li><strong>抑制（</strong><em>Hold down</em><strong>）定时器：</strong>	设置路由信息被抑制的时间</li>
+							<li><strong>路由刷新（</strong><em>Flushed</em><strong>）定时器：</strong>	将路由设为无效，并从路由表中删除的时间间隔</li></ul>
 							<h2>RIP配置</h2>
-							<p>配置完端口后输入：</p>
+							<img src="images/rip.jpg" >
+							<p>如图配置完接口后输入：</p>
 							<blockquote><code>
 							R1(config)#router rip</code><br>
 							<code>R1(config-router)#network 1.0.0.0
@@ -158,8 +168,35 @@ C       12.1.1.0 is directly connected, Serial0/1/1<br>
 C       13.1.1.0 is directly connected, FastEthernet0/0<br>
 R    23.0.0.0/8 [120/1] via 13.1.1.3, 00:00:09, FastEthernet0/0<br>
                 [120/1] via 12.1.1.2, 00:00:12, Serial0/1/1<br>
-				</samp><blockquote>
+				</samp></blockquote>
 							<p><samp>R    2.0.0.0/8 [120/1] via 12.1.1.2, 00:00:12, Serial0/1/1</samp>表示通过RIP学到的远程网络，RIP是有类路由协议，且自动进行汇总；120为管理距离，1表示从R1到达2.0.0.0/8需要1 hop； 00:00:12为收到最后一次路由更新的时间</p>
+							<p><span style="fontsize:20px">查看路由协议</span></p>
+							<blockquote>
+							<code>R1>show ip protocol</code><br><samp>
+Routing Protocol is "rip"<br>
+Sending updates every 30 seconds, next due in 11 seconds<em>定时器的设置值</em><br>
+Invalid after 180 seconds, hold down 180, flushed after 240<br>
+Outgoing update filter list for all interfaces is not set <em>未使用过滤列表</em><br>
+Incoming update filter list for all interfaces is not set<br>
+Redistributing: rip<br>
+Default version control: send version 1, receive any version<br>
+  Interface             Send  Recv  Triggered RIP  Key-chain<br>
+  Loopback0             1     2 1   <br>
+  FastEthernet0/0       1     2 1   <br>
+  Serial0/1/1           1     2 1   <br>
+Automatic network summarization is in effect<br>
+Maximum path: 4<br>
+Routing for Networks:<br>
+	1.0.0.0<br>
+	12.0.0.0<br>
+	13.0.0.0<br>
+Passive Interface(s):<br>
+Routing Information Sources:<br>
+	Gateway         Distance      Last Update<br>
+	12.1.1.2             120      00:00:10<br>
+	13.1.1.3             120      00:00:25<br>
+Distance: (default is 120)<br></samp></blockquote>
+							
 							<div class="note">
 							  <ol>
 								<li>Lorem ipsum</li>
