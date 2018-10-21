@@ -7,7 +7,7 @@
     <meta name="description" content="personal Homepage of Zayl">
     <meta name="author" content="#">
 
-	<title>Metora - Zayl's Homepage</title>
+	<title>CCNA - Router</title>
   
 	<!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -184,9 +184,9 @@ R3(config-if)#<br>
 </code></blockquote>
 							<p>Loopback为环回接口，环回接口是用于模拟路由条目的虚拟接口。稳定，除掉电或关闭，一直有效</p>
 							<h2>测试连通性</h2>
-							<p>（1）测试网关</p>	
+							<p><span style="color:blue;font-size:20px">（1）测试网关</span></p>	
 							<blockquote>
-							<code>C:\>ping 192.168.1.1</code><br><samp><br>
+							<kbd>C:\>ping 192.168.1.1</kbd><br><samp><br>
 
 Pinging 192.168.1.1 with 32 bytes of data:<br><br>
 
@@ -208,10 +208,10 @@ Approximate round trip times in milli-seconds:<br>
 								<li>检查防火墙</li>
 							</ul>	
 							</p>
-							<p>（2）测试不同子网的IP地址</p>	
+							<p><span style="color:blue;font-size:20px">（2）测试不同子网的IP地址</span></p>	
 							<blockquote>
-							<code>
-							C:\>ping 12.1.1.1</code><br><samp><br>
+							<kbd>
+							C:\>ping 12.1.1.1</kbd><br><samp><br>
 
 Pinging 12.1.1.1 with 32 bytes of data:<br><br>
 
@@ -221,13 +221,13 @@ Request timed out.<br>
 Request timed out.<br>
 <br>
 Ping statistics for 12.1.1.1:<br>
-    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),<br>
+&nbsp    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),<br>
 							</samp>
 							</blockquote>
 							<p>ping路由器R1的S0/0/1接口地址12.1.1.1显示超时，在路由器R1上进行调试，输出如下</p>
 							<blockquote>
-							<code>R1>en<br>
-R1#debug ip icmp</code><br><samp>
+							<kbd>R1>en<br>
+R1#debug ip icmp</kbd><br><samp>
 ICMP packet debugging is on<br>
 R1#<br>
 ICMP: echo reply sent, src 192.168.1.1, dst 192.168.1.2<br><br>
@@ -241,7 +241,7 @@ ICMP: echo reply sent, src 192.168.1.1, dst 192.168.1.2<br>
 							</blockquote>
 							<p>在PC上继续ping路由器R1的接口地址，ping Fa0/0端口时R1同步显示，但ping S0/0/1接口时无反应</p>
 							<p>猜想原因路由器R1未收到包</p>
-							<p>实际原因未在PC上配置网关192.168.1.1</p>
+							<p><em><span style="color:blue">实际原因未在PC上配置网关192.168.1.1</span></em></p>
 							<p></p>
 							<p>继续ping别的IP地址，R2的S0/0/0接口12.1.1.2不通，在R2上debug:</p>
 							<blockquote><code>R2#debug ip icmp</code><br><samp>
@@ -259,25 +259,25 @@ ICMP: echo reply sent, src 12.1.1.2, dst 192.168.1.2<br></samp></blockquote>
 							<blockquote>
 							<code>R2#show ip route</code><br><samp>
 Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP<br>
-       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>
-       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>
-       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP<br>
-       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area<br>
-       * - candidate default, U - per-user static route, o - ODR<br>
-       P - periodic downloaded static route<br><br>
+&nbsp&nbsp  &nbsp  &nbsp     D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>
+&#8195&#8195&#8195&#8195&#8195&#8195	N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>
+&#8194&#8194&#8194&#8194&#8194&#8195      E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP<br>
+&nbsp&nbsp 	&#8195	&#8195      i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area<br>
+&nbsp&#8195 &#8195 &#8195      * - candidate default, U - per-user static route, o - ODR<br>
+&nbsp&nbsp&nbsp&nbsp&#8195&#8195      P - periodic downloaded static route<br><br>
 
 Gateway of last resort is not set<br><br>
 
-     12.0.0.0/24 is subnetted, 1 subnets<br>
-C       12.1.1.0 is directly connected, Serial0/0/0<br>
-     23.0.0.0/24 is subnetted, 1 subnets<br>
-C       23.1.1.0 is directly connected, Serial0/0/1<br></samp>
+&nbsp&nbsp  &nbsp  &nbsp       12.0.0.0/24 is subnetted, 1 subnets<br>
+C&nbsp&nbsp&nbsp  &nbsp  &nbsp         12.1.1.0 is directly connected, Serial0/0/0<br>
+&nbsp&nbsp  &nbsp  &nbsp       23.0.0.0/24 is subnetted, 1 subnets<br>
+C&nbsp&nbsp&nbsp  &nbsp  &nbsp         23.1.1.0 is directly connected, Serial0/0/1<br></samp>
 							</blockquote>
 							<p>可见路由表没有更新，表中没有指明去往192.168.1.2的路由，添加后ping通</p>
 							<blockquote>
 							<code>R2(config)#ip route 192.168.1.0 255.255.255.0 12.1.1.1</code></blockquote>
 							<p></p>
-							<p>添加其他路由</p>
+							<p>添加其他路由：</p>
 							<blockquote>
 							<code>R1(config)#ip route 0.0.0.0 0.0.0.0 12.1.1.2</code></blockquote>
 							<blockquote>
@@ -285,8 +285,90 @@ C       23.1.1.0 is directly connected, Serial0/0/1<br></samp>
 							<blockquote>
 							<code>R3(config)#ip route 0.0.0.0 0.0.0.0 23.1.1.2</code></blockquote>
 							<h2></h2>
-							<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-							 At vero eos et accusam et justo duo dolores et ea rebum hendrerit in vulputate velit esse molestie.</p>
+							<p>其中R2未添加路由3.3.3.0/24前会出现:</p>
+							<blockquote>
+							<samp>Pinging 3.3.3.3 with 32 bytes of data:<br><br>
+
+Reply from 12.1.1.2: Destination host unreachable.<br>
+Reply from 12.1.1.2: Destination host unreachable.<br>
+Reply from 12.1.1.2: Destination host unreachable.<br>
+Request timed out.<br><br>
+
+Ping statistics for 3.3.3.3:<br>
+&nbsp    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),</samp></blockquote>
+							<p><em>request time out 是指icmp包发出后，长时间没有回应，所以会产生request time out。一般是ping了一台网络中不存在的主机。 
+destination is unreachable 或 destination port unreachable 一般是收到了目标主机或中间路由器回应的端口或目标主机不可达icmp包。 </em></p>
+							<h2>进一步测试连通性</h2>
+							<p>在R1上ping 3.3.3.3：</p>
+							<blockquote>
+							<code>R1#ping 3.3.3.3</code><br><br><samp>
+
+Type escape sequence to abort.<br>
+Sending 5, 100-byte ICMP Echos to 3.3.3.3, timeout is 2 seconds:<br>
+!!!!!<br>
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/6/19 ms</samp>
+							
+							</blockquote>
+							<p>关闭R3loopback端口：</p>
+							<blockquote>
+							<code>
+R3(config)#int lo0<br>
+R3(config-if)#shut</code><br><br>
+<code>R1#debug ip icmp<br>
+ICMP packet debugging is on<br>
+R1#ping 3.3.3.3</code><br><br>
+
+
+<samp>
+Type escape sequence to abort.<br>
+Sending 5, 100-byte ICMP Echos to 3.3.3.3, timeout is 2 seconds:<br><br>
+
+ICMP: time exceeded (time to live) rcvd from 12.1.1.2<br>
+.<br>
+ICMP: time exceeded (time to live) rcvd from 12.1.1.2<br>
+.<br>
+ICMP: time exceeded (time to live) rcvd from 12.1.1.2<br>
+.<br>
+ICMP: time exceeded (time to live) rcvd from 12.1.1.2<br>
+.<br>
+ICMP: time exceeded (time to live) rcvd from 12.1.1.2<br>
+.<br>
+Success rate is 0 percent (0/5)<br>
+</samp></blockquote><p>超时，产生环路<br></p>
+							<p>打开R3loopback端口,关闭R2 S0/0/1接口,在R1 ping 3.3.3.3：</p>
+							<blockquote><code>
+							R1#ping 3.3.3.3</code><br><br>
+							<samp>
+Type escape sequence to abort.<br>
+Sending 5, 100-byte ICMP Echos to 3.3.3.3, timeout is 2 seconds:<br>
+U<br>
+ICMP: dst (12.1.1.1)  host unreachable rcv from 12.1.1.2<br>
+.U<br>
+ICMP: dst (12.1.1.1)  host unreachable rcv from 12.1.1.2<br>
+.U<br>
+Success rate is 0 percent (0/5)<br><br>
+
+R1#<br>
+ICMP: dst (12.1.1.1)  host unreachable rcv from 12.1.1.2</samp><br>
+</blockquote>
+							<p>查看R2路由表，丢失S0/0/1的直连路由和去往3.3.3.3的静态路由</p>
+							<blockquote><samp>
+         12.0.0.0/24 is subnetted, 1 subnets<br>
+C           12.1.1.0 is directly connected, Serial0/0/0<br>
+S        192.168.1.0/24 [1/0] via 12.1.1.1<br></samp>
+</blockquote>
+							<h2>高级ping</h2>
+							<p>在R1上ping</p>
+
+							<h2>文件管理</h2>
+							<br>
+							<p>查看运行配置文件</p>
+							<blockquote><p><code>R1#show running-config</code></blockquote>  <br>
+							<p>查看保存的配置文件</p>
+							<blockquote><code>R1#show startup-config</code></blockquote>
+							<p>保存运行配置文件</p>
+							<blockquote><code>R1#copy running-config startup-config</code></blockquote>&nbsp<span style="fontsize:10px"><i>一般简写成 copy run start</i></span><br>
+							或者<br><blockquote><code>R1#write</code></blockquote>&nbsp<span style="fontsize:10px"><i>用运行配置文件覆盖启动配置文件</i></span>
 							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
 							 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
 						
