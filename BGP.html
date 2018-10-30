@@ -7,7 +7,7 @@
     <meta name="description" content="personal Homepage of Zayl">
     <meta name="author" content="#">
 
-	<title>CCNA - OSPF</title>
+	<title>CCNA - BGP</title>
   
 	<!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -82,7 +82,7 @@
 	<header class="container">
 		<div class="site-branding">
 			<h1 class="site-title">
-				<a href="/index">
+				<a href="index.html">
 					<span>Metora</span>
 				</a>
 			</h1>
@@ -107,46 +107,98 @@
 					<article>
 						<img src="images/banner1.jpg" />
 						<div class="art-content">
-							<h1>OSPF</h1>
-							<div class="info">By <a href="#">Zayl</a> on Oct 24, 2018</div>
-							<div class="excerpt"><p><em>Open Shortest Path First</em> 开放式最短路径优先，链路状态(Link-State)式路由协议</p></div>
-							<h2>组播地址 协议号</h2>
-							<p>224.0.0.5(All OSPF Router)<br> 224.0.0.6 (All DR Router)<br>
-							IP协议89号
-							</p>
-							<h2>LSA种类	</h2>
-							<p><em>Link-State Advertisement</em>链路状态通告，记录所有相关路由器，包括邻居路由器的标识、链路类型、带宽等</p>
-							<blockquote><p><ol>
-								<li>路由器LSA：路由器发送1类LSA，包含链路和状态的详细信息</li>
-								<li>网络LSA：DR发出来的，包含了链路上的所有路由器以及子网掩码</li>
-								<li>网络汇总LSA：由ABR生成的区域间的路由信息</li>
-								<li>ASBR汇总LSA：由ABR生成的去往ABBR的路由</li>
-								<li>AS外部LSA：由ASBR生成的外部路由</li>
-								<li>NSSA区域外部LSA：NSSA区域生成的外部路由，在经过ABR以后会7转5</li>
-							</ol></p></blockquote>
-							<h2>防环</h2>
-							<p><ul>
-								<li>区域内经过SPF算法计算不会产生环路</li>
-								<li>区域间：类似水平切割，非骨干区域只能和骨干区域连接，骨干区域只接受非骨干区域的1类LSA和2类LSA，不接受非骨干区域通告的3类LSA</li>						
-							</ul></p>
-							<h2>汇总路由</h2>
-							<p><ul>
-								<li>区域内由于是通过SPF算法计算出的路由，无法进行汇总</li>
-								<li>区域间的汇总在ABR上进行，在区域下abr-summary</li>						
-							</ul></p>
-							<h2>与IS-IS间比较</h2>
-							<p>集成IS-IS(<em>Integrated Intermediate System to Intermediate System Intra-Domain routing information exchange protocol</em> )支持CLNP和IP路由通告，</p>
-							<h2>Heading 2</h2>
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. 
-							 At vero eos et accusam et justo.</p>
-							<h2>Heading 3</h2>
-							<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-							 At vero eos et accusam et justo duo dolores et ea rebum hendrerit in vulputate velit esse molestie.</p>
-							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-							 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-						
-							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-							sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+							<h1>CCNA - BGP</h1>
+							<div class="info">By <a href="#">Zayl</a> on Oct 30, 2018</div>
+							<div class="excerpt"><p><em>Border Gateway Protocol</em> 边界网关协议</p></div>
+							<h2>组播地址</h2>
+							<blockquote><samp>224.0.0.0 基准地址（保留）<br>
+ 
+　　224.0.0.1 所有主机的地址<br>
+ 
+　　224.0.0.2 所有组播路由器的地址<br>
+ 
+　　224.0.0.3 不分配<br>
+ 
+　　224.0.0.4 dvmrp 路由器<br>
+ 
+　　<strong>224.0.0.5 OSPF 路由器<br>
+ 
+　　224.0.0.6 OSPF DR</strong><br>
+ 
+　　224.0.0.7 st 路由器<br>
+ 
+　　224.0.0.8 st 主机<br>
+ 
+　　<strong>224.0.0.9 RIPv2 路由器</strong><br>
+ 
+　　<strong>224.0.0.10 EIGRP 路由器</strong><br>
+ 
+　　224.0.0.11 活动代理<br>
+ 
+　　224.0.0.12 DHCP 服务器/中继代理<br>
+ 
+　　224.0.0.13 所有pim 路由器<br>
+ 
+　　224.0.0.14 rsvp 封装<br>
+
+　　224.0.0.15 所有cbt 路由器<br>
+ 
+　　224.0.0.16 指定sbm<br>
+ 
+　　224.0.0.17 所有sbms<br>
+ 
+　　224.0.0.18 vrrp<br>
+</samp></blockquote>
+							<p></p>
+							<h2>RJ-45接口排线</h2>
+							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+							 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse lorem ipsum dolor sit amet.</p>
+							<h2>路由查找过程</h2>
+							<blockquote><samp>
+								To_Find_Router RouteX;<br>
+								Level_1_Router NetworkRouter, ParentRouter, SupernetRouter, DefaultRouter;<br>
+								Level_2_Router ChildRouter;<br>
+								Ultimate_Router  NetworkRouter, SupernetRouter, DefaultRouter, ChildRouter;<br>
+	&nbsp								if RouteX.LPM is Level_1_Router<br>
+	&nbsp	&nbsp										if Level_1_Router == Ultimate_Router<br>
+	&nbsp	&nbsp		&nbsp										Level_1_Router.forward(RouteX);<br>
+	&nbsp	&nbsp										else <br>
+	&nbsp	&nbsp											if Level_1_Router is ParentRouter<br>
+	&nbsp	&nbsp	&nbsp												if RouteX.LPM == ParentRouter.ChildRouter<br>
+	&nbsp	&nbsp	&nbsp													Child.forward(RouteX);<br>
+	&nbsp	&nbsp									if no ip classless<br>
+	&nbsp	&nbsp	&nbsp										drop(RouteX);<br>
+	&nbsp	&nbsp	&nbsp										return;<br>
+
+	&nbsp	&nbsp									if ip classless<br>
+	&nbsp	&nbsp	&nbsp										if RouteX.LPM == SupernetRouter || RouteX.LPM == DefaultRouter<br>
+	&nbsp	&nbsp	&nbsp											forward(RouteX);<br>
+	&nbsp	&nbsp									else drop(RouteX);<br>
+	&nbsp	&nbsp										return;<br>
+							</samp></blockquote>
+							<h2>OSI参考模型</h2>
+							<ol><li>物理层：通过媒介传输比特,确定机械及电气规范（比特Bit） </li> 
+<li>数据链路层：将比特组装成帧和点到点的传递（帧Frame）</li> 
+<li>网络层：负责数据包从源到宿的传递和网际互连（包PackeT） </li> 
+<li>传输层：提供端到端的可靠报文传递和错误恢复（段Segment） </li> 
+<li>会话层：建立、管理和终止会话（会话协议数据单元SPDU） </li> 
+<li>表示层：对数据进行翻译、加密和压缩（表示协议数据单元PPDU）</li> 
+<li>应用层：允许访问OSI环境的手段（应用协议数据单元APDU）</li></ol><br>
+							<p>网络层协议负责的是提供主机间的逻辑通信 <br>
+传输层协议负责的是提供进程间的逻辑通信</p><br>
+							<h2>协议端口号</h2>
+							<ul><li><strong>HTTP</strong> TCP 80</li>
+							<li><strong>TELNET</strong> TCP 23</li>
+							<li><strong>SSH</strong> TCP 22</li>
+							<li><strong>FTP</strong> TCP 20/21</li>
+							<li><strong>SMTP</strong> 25</li>
+							<li><strong>POP3</strong> 110</li>
+							<li><strong>TFTP</strong> UDP 69 </li>
+							<li><strong>DNS</strong> UDP 53 </li>
+							</ul>
+							<h2>TCP握手</h2>
+							<img src="images/CCNA/3shakes.gif">
+							<img src="images/CCNA/4shakes.gif">
 							<div class="note">
 							  <ol>
 								<li>Lorem ipsum</li>
