@@ -131,7 +131,7 @@
 							<p>根据改写规则，在类声明中定义方法等同于用原型替换方法定义，再在类声明的后面将定义改写成内联函数；</p>
 							<p>调用成员函数时，它将使用 调用它的 对象的数据成员</p>
 
-							<h2>构造函数&析构函数</h2>
+							<h2>构造函数</h2>
 							<p>构造函数没有声明类型;
 								<br>
 								构造函数的参数表示的不是类成员而是赋给类成员的值</p>
@@ -167,7 +167,8 @@
 										</blockquote>
 									</p>
 							</blockquote>
-							<blockquote><samp>Stock first;</samp> <span style=color:grey> //calls default constructor implicitly</span><br>
+							<blockquote>使用上述方式创建默认构造函数后便可声明对象变量，而不进行显式初始化：<br>
+								<samp>Stock first;</samp> <span style=color:grey> //calls default constructor implicitly</span><br>
 								<samp>Stock first = Stock();</samp> <span style=color:grey> //calls default constructor explicitly</span><br>
 								<samp>Stock *prelief = new Stock;</samp> <span style=color:grey> //calls default constructor implicitly</span><br>
 								<p>非默认构造函数的隐式形式</p>
@@ -178,9 +179,20 @@
 							</blockquote>
 
 
-							<h2>Heading 3</h2>
-							<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-							 At vero eos et accusam et justo duo dolores et ea rebum hendrerit in vulputate velit esse molestie.</p>
+							<h2>析构函数</h2>
+							<p>对象过期时程序自动调用析构函数清理</p>
+							<p>在类名前加上~</p>
+							<blockquote>原型prototype:<br>
+								<samp>~Stock();</samp> <span style=color:grey> //无参数</span><br>
+								实现:<br>
+								<samp>Stock::~Stock()  <span style=color:grey> <em>// class destructor</em></span><br>
+									{<br>
+									}<br></samp> <br>
+								
+								<p>通常不显式调用析构函数</p>
+							</blockquote>
+							
+							
 							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
 							 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
 						
