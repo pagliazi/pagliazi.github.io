@@ -93,7 +93,7 @@
 				<li><a href="#"><i class="fa fa-wechat"></i></a></li>
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+				
 				<li><a href="https://www.instagram.com/pagliasci/"><i class="fa fa-instagram"></i></a></li>
 				
 			</ul>
@@ -111,24 +111,55 @@
 							<h1>CPP Learning</h1>
 							<div class="info">By <a href="#">Zayl</a> on Nov 2, 2018</div>
 							<div class="excerpt"><p></p></div>
-							<p></p>
-                            <blockquote><p><samp>class <em>CLASSNAME</em><br>
+							<h2>类的描述————声明 declaration</h2>
+                            <blockquote><samp>class <em>CLASSNAME</em><br>
                             {<br>
                             private:<br>
                             &nbsp&nbsp  <em>data member declarations</em><br>
                             public:<br>
                             &nbsp&nbsp  <em>member function prototypes</em><br>
-                            };<br>
-                            
-                            </samp></p></blockquote>
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
-							at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril.</p>
-							<h2>Heading 1</h2>
-							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
-							 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse lorem ipsum dolor sit amet.</p>
-							<h2>Heading 2</h2>
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. 
-							 At vero eos et accusam et justo.</p>
+                            };<span style=color:yellow>//note semicolon at the end</span><br><br>
+                            </samp></blockquote>
+							<p>C++将接口（类定义）放在.h头文件中，将实现（类方法）放在.cpp源代码文件中。</p>
+							<h2>类的描述————实现</h2>
+							
+							<ul>
+								<li>定义类成员函数时，用作用域解析运算符（::）来标识函数所属的类 </li>
+								<li>类方法可以访问类的private组件</li>
+							</ul>>
+							<p>定义在类声明中的函数都自动转为内联函数；</p>
+							<p>根据改写规则，在类声明中定义方法等同于用原型替换方法定义，再在类声明的后面将定义改写成内联函数；</p>
+							<p>调用成员函数时，它将使用 调用它的 对象的数据成员</p>
+
+							<h2>构造函数&析构函数</h2>
+							<p>构造函数没有声明类型;
+								<br>
+								构造函数的参数表示的不是类成员而是赋给类成员的值</p>
+								<br>
+							<blockquote>
+								<p>调用构造函数初始化对象：</p>
+								<samp>Stock food = Stock("World", 25, 12.5);</samp> <span style=color:yellow>//显式调用</span><br>
+								<samp>Stock food("World", 25, 12.5);</samp> <span style=color:yellow>	//隐式调用</span><br>
+								
+							</blockquote>
+
+							<p><strong>构造函数用于创建对象，但不能通过对象来调用</strong></p>
+							
+							<blockquote>
+									<samp>stock1.show();</samp> <span style=color:yellow> //使用对象调用类方法</span><br>
+									
+							</blockquote>
+							<br>
+							
+							<blockquote>
+									<p>默认构造函数</p>
+									<samp>Stock fluffy_cat;</samp> <span style=color:yellow> //使用默认构造函数</span><br>
+									<p>若没有提供构造函数，C++会自动提供默认构造函数如：
+										<blockquote><samp>Stock::stock() {}</samp></blockquote>
+
+									</p>
+							</blockquote>
+
 							<h2>Heading 3</h2>
 							<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
 							 At vero eos et accusam et justo duo dolores et ea rebum hendrerit in vulputate velit esse molestie.</p>
@@ -140,7 +171,7 @@
 							<div class="note">
 							  <ol>
 								<li>Lorem ipsum</li>
-								<li>Sit amet vultatup nonumy</li>
+								<li>Sit</li>
 								<li>Duista sed diam</li>
 							  </ol>
 							  <div class="clear"></div>
