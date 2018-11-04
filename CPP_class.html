@@ -118,7 +118,7 @@
                             &nbsp&nbsp  <em>data member declarations</em><br>
                             public:<br>
                             &nbsp&nbsp  <em>member function prototypes</em><br>
-                            };<span style=color:yellow>//note semicolon at the end</span><br><br>
+                            };<span style=color:gray>//note semicolon at the end</span><br><br>
                             </samp></blockquote>
 							<p>C++将接口（类定义）放在.h头文件中，将实现（类方法）放在.cpp源代码文件中。</p>
 							<h2>类的描述————实现</h2>
@@ -138,22 +138,22 @@
 								<br>
 							<blockquote>
 								<p>调用构造函数初始化对象：</p>
-								<samp>Stock food = Stock("World", 25, 12.5);</samp> <span style=color:yellow>//显式调用</span><br>
-								<samp>Stock food("World", 25, 12.5);</samp> <span style=color:yellow>	//隐式调用</span><br>
+								<samp>Stock food = Stock("World", 25, 12.5);</samp> <span style=color:gray>//显式调用</span><br>
+								<samp>Stock food("World", 25, 12.5);</samp> <span style=color:gray>	//隐式调用</span><br>
 								
 							</blockquote>
 
 							<p><strong>构造函数用于创建对象，但不能通过对象来调用</strong></p>
 							
 							<blockquote>
-									<samp>stock1.show();</samp> <span style=color:yellow> //使用对象调用类方法</span><br>
+									<samp>stock1.show();</samp> <span style=color:grey> //使用对象调用类方法</span><br>
 									
 							</blockquote>
 							<br>
 							
 							<blockquote>
 									<p>默认构造函数</p>
-									<samp>Stock fluffy_cat;</samp> <span style=color:yellow> //使用默认构造函数</span><br>
+									<samp>Stock fluffy_cat;</samp> <span style=color:grey> //使用默认构造函数</span><br>
 									<p>若没有提供构造函数，C++会自动提供默认构造函数如：
 										<blockquote><samp>Stock::stock() {}</samp></blockquote>
 
