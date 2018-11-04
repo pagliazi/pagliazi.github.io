@@ -152,11 +152,16 @@
 							<br>
 							
 							<blockquote>
-									<p>默认构造函数</p>
+									<p>默认构造函数————在未提供显式初始值时，用来创建对象的构造函数</p>
 									<samp>Stock fluffy_cat;</samp> <span style=color:grey> //使用默认构造函数</span><br>
 									<p>若没有提供构造函数，C++会自动提供默认构造函数如：
-										<blockquote><samp>Stock::stock() {}</samp></blockquote>
-
+										<blockquote><samp>Stock::stock() {}</samp></blockquote><br>
+										只有在没定义任何构造函数的情况下，编译器才提供默认构造函数<br>
+										<blockquote>
+											要创建对象而不显式地初始化，则需定义一个不接受任何参数的默认构造函数<br>
+											<ul><li>给已有构造函数的参数赋默认值：</li>
+											<samp>Stock(const string & co = "Error", int n = 0, double pr = 0.0);</samp></blockquote><br>
+											<li>通过函数重载定义一个没有参数的构造函数</li></ul>
 									</p>
 							</blockquote>
 
