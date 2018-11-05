@@ -160,9 +160,10 @@
 							    int grop = 16;<br>
     int chips = 12;<br>
 
-    const int *p_snack1 = &grop; <em> // 禁止修改指向值  但可以指向另一变量</em><br>
+    const int *p_snack1 = &grop; <em> // 常量指针：禁止修改指向值  但可以指向另一变量</em><br>
 
-	int * const p_snack2 = &grop;  <em> // 可以修改指向对象的值  但不能改变指向的变量</em><br>
+	int * const p_snack2 = &grop;  <em> // 指针常量：可以修改指向对象的值  但不能改变指向的变量</em><br>
+	const int *  p_snack3 = p_snack2;<br>	
 								</samp>
 							</blockquote>
 							<h2>Heading 1</h2>
