@@ -137,9 +137,34 @@
 								</samp><br>
 							</p>
 							</blockquote>
+							
 
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
-							at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril.</p>
+
+							<p>指针指向指针：<br>
+							一级间接关系，可以将非const指针赋给const指针<br>
+							二级间接关系，不能将const和非const指针混合赋值
+							</p>
+							<p><strong>如果数据类型本身不是指针，则可以将const数据或非const数据的地址赋给指向const的指针，但只能将非const数据的地址赋给非const指针</strong>
+							</p>
+
+							<p>尽可能使用const：
+								<ul>
+								<li>可避免无意间修改数据导致出错</li>
+								<li>使用const使得函数可以处理const和非const实参，否则只能接受非const数据</li>
+							</ul>
+							条件允许，则应将指针形参声明为指向const的指针
+							</p>
+							<blockquote>
+								<strong>指向const的指针和const指针：</strong><br>
+								<samp>
+							    int grop = 16;<br>
+    int chips = 12;<br>
+
+    const int *p_snack1 = &grop; <em> // 禁止修改指向值  但可以指向另一变量</em><br>
+
+	int * const p_snack2 = &grop;  <em> // 可以修改指向对象的值  但不能改变指向的变量</em><br>
+								</samp>
+							</blockquote>
 							<h2>Heading 1</h2>
 							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
 							 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse lorem ipsum dolor sit amet.</p>
