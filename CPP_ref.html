@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="personal Homepage of Zayl">
-    <meta name="author" content="#">
+    <meta name="author" content="ZY">
 
-	<title>Metora - Zayl's Homepage</title>
+	<title>CPP - Reference
+    </title>
   
 	<!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -57,7 +58,7 @@
                         <a class="page-scroll" href="/archive">Blog</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/single">About</a>
+                        <a class="page-scroll" href="/about">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/contact">Contact</a>
@@ -90,11 +91,12 @@
 		</div>
 		<div class="social-links">
 			<ul class="list-inline">
+				<li><a href="#"><i class="fa fa-wechat"></i></a></li>
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-				<li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-				<li><a href="#"><i class="fa fa-rss"></i></a></li>
+				<li><a href="https://www.instagram.com/pagliasci/"><i class="fa fa-instagram"></i></a></li>
+				
 			</ul>
 		</div>
 	</header>
@@ -107,59 +109,36 @@
 					<article>
 						<img src="images/banner1.jpg" />
 						<div class="art-content">
-							<h1>C++学习记录</h1>
-							<div class="info">By <a href="#">Zayl</a> on Octo 11, 2018</div>
-							<div class="excerpt"><p></p></div>
-							<p>学习C++时讨论到类型问题</p>
-							<h2>将int型指针地址转为double型指针地址</h2>
-							<blockquote>
-							<div class="note">
-							  <samp>
-											#include&ltiostream&gt<br>
-												int main()<br>
-											    {<br>
-												int* p=new int;<br>
-												*p = 1；<br>
-												double* d;<br>
-												d = (double*)p;<br>
-												std::cout << *d << std::endl;<br>
-											}<br>
-											</samp>
-							</div>
-							</blockquote>
-							<p>将<em>int</em>型指针<em>p</em>地址的类型转为<em>double</em>型后，
-								赋值给另一个指向<em>double</em>的指针<em>d</em>，两指针地址相同，
-								但地址内存的值不同；
-								因为<em>d(double)</em>多出4个字节存储空间，其中值未知</p>
-							<h2>char型数组指针修改内存值效果</h2>
-							<blockquote>
-							<div class="note">
-							  
-								<samp>
-											#include&ltiostream&gt<br>
-											int main()<br>
-											{<br>
-												char* p=new char[4];<br>
-												p[0]=10;<br>
-												p[1]=2;<br>
-												p[2]=0;<br>
-												p[3]=0;<br>
-												int* d;<br>
-												d=(int*)p;<br>
-												std::cout << *d << std::endl;<br>
-											}
-								</samp>
-							</div>				
-							</blockquote>
-							<p>C++内存本质为char型，数组p将存储单元中的位数进行修改，p[0]=10，即低8位为0000 1010，p[1]=2，即第二个8位为0000 0010。</p>
-							<p>类型转换后0000 0010 0000 1010转为十进制数522。</p>
-	<!--						
-							<h2>Heading 1</h2>
-							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
-							 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse lorem ipsum dolor sit amet.</p>
-							<h2>Heading 2</h2>
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. 
-							 At vero eos et accusam et justo.</p>
+							<h1>引用变量</h1>
+							<div class="info">By <a href="#">Zayl</a> on Nov 6, 2018</div>
+							<div class="excerpt"><p>引用变量是已定义变量的别名</p></div>
+                            <h2>创建引用变量</h2>
+							<p>int &表示指向int类型的引用<br>
+								声明引用变量时必须对其初始化<br>
+                            </p>
+                            <blockquote><samp>int & rodents = rats;<br>
+                                实际是下述代码的伪装表示：<br>
+                            int * const pr = rats;<br>
+                                
+                            </samp>
+                            引用rodents 扮演的角色与 * pr 相同<br> 
+                            </blockquote><p></p>
+							<h2>将引用用作函数参数</h2>
+                            <p>使函数的变量名成为调用程序中变量的别名<br>
+                                按引用传递：允许被调用的函数能访问调用函数中的变量。<br>
+                            <strong>按值传递导致 被调用函数 使用 调用函数的值 的拷贝；<br>
+                            按值传递x创建新变量x，导致有2个变量，2个名称；<br>
+                            按引用传递&x使x成为传递来变量的别名，1个变量，2个名称。</strong>
+                            </p>
+							<h2>临时变量、引用变量和 const</h2>
+                            <p>若实参和引用参数不匹配，将生成临时变量：<br>
+                            <ul>
+                                <li>实参类型正确，但不是左值；</li>
+                                <li>实参类型不正确，但可以转换为正确的类型。</li>
+                            </ul>
+                            左值参数是可被引用的数据对象，如变量、数组元素、结构成员、引用和解除引用的指针；<br>
+                            非左值包括字面常量和包含多项的表达式。<br>
+                            </p>
 							<h2>Heading 3</h2>
 							<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
 							 At vero eos et accusam et justo duo dolores et ea rebum hendrerit in vulputate velit esse molestie.</p>
@@ -168,58 +147,13 @@
 						
 							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
 							sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-!-->
-							<h2>浅拷贝类似于按址传递，深拷贝按值传递</h2>
-							<h3>浅拷贝</h3>
-							<p>对象初始化对象的时候调动拷贝构造函数，只是拷贝指针指向的拷贝构造称为浅拷贝。</p>
-							<h3>深拷贝</h3>
-							<p> 对象初始化对象的时候调动拷贝构造函数，真实开辟空间拷贝数据的拷贝构造称为深拷贝。</p>
-							<h3>浅赋值</h3>
-							<p> 对象给对象赋值时候调动赋值语句，不会开辟空间，只是简单的指针赋值</p>
-							<blockquote>
-								<code>
-									int main()<br>
-									{<br>
-										example;<br>
-									}<br>
-								</code>
-
-							</blockquote>
-							<h3>深赋值</h3>
-							<p>对象给对象赋值时候调动赋值语句，会开辟空间，注意开辟空间时要<strong>释放原有空间</srong></p>
 							<div class="note">
 							  <ol>
-								
-								<li>自己给自己是否赋值</li>
-								<li>释放原有空间</li>
-								<li>申请新的空间赋值，拷贝</li>
-								<li>返回自身对象</li>
-								
+								<li>Lorem ipsum</li>
+								<li>Sit amet vultatup nonumy</li>
+								<li>Duista sed diam</li>
 							  </ol>
 							  <div class="clear"></div>
-							  <blockquote>
-								<code>
-								vec&ltTYPE&gt  & operator =(const vec&ltTYPE&gt &v)  <i>//赋值运算符函数</i><br>
-										{<br>
-											if(this!=&v)<br>
-											{<br>
-												int i;<br>
-												delete [] p ;<br>
-												if(v.num==0)<br>
-												{<br>
-													num = 0;<br>
-													p = NULL;<br>
-													return *this;<br>
-												}<br>
-												num = v.num;<br>
-												p=new TYPE[num];<br>
-												for(i=0;i<num;i++)<br>
-													p[i]=v.p[i];<br>
-											}<br>
-											return *this;<br>
-										}<br>
-								</code>
-							  </blockquote>
 							</div>
 							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at 
 							 vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
@@ -265,8 +199,8 @@
 				<div class="row"> 
 					<div class="col-footer col-md-3">
 						<h2 class="footer-title">About Me</h2>
-						<div class="textwidget">My info<br> <br> 
-						lalalala</div>
+						<div class="textwidget">A normal CES student in SHU<br> <br> 
+						</div>
 					</div> 
 					<div class="col-footer col-md-3 widget_recent_entries">
 						<h2 class="footer-title">Recent Posts</h2>
@@ -328,9 +262,9 @@
 							</li>
 							<li><a href="#"><i class="fa fa-facebook"></i></a>
 							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
+							<li><a href="https://www.instagram.com/pagliasci/"><i class="fa fa-instagram"></i></a>
 							</li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a>
+							<li><a href="#"><i class="fa fa-wechat"></i></a>
 							</li>
 						</ul>
 					</div>
